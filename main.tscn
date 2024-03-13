@@ -1,3 +1,10 @@
 [gd_scene format=3 uid="uid://te7v0r4n0ey7"]
 
 [node name="Main" type="Node"]
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Level"]
+format = 2
+
+[node name="Camera2D" type="Camera2D" parent="Level"]
