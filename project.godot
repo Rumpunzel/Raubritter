@@ -24,3 +24,7 @@ window/size/viewport_height=1080
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[navigation]
+
+2d/default_edge_connection_margin=32.0
