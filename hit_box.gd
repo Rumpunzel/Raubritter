@@ -1,4 +1,7 @@
+class_name HitBox
 extends Area2D
+
+signal damaged(damage_taken: float, source: Unit, weapon: Weapon)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -8,10 +11,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func _on_body_entered(body: Node2D) -> void:
-	if not body is CharacterController: return
-	body.is_on_path = true
-
-func _on_body_exited(body: Node2D) -> void:
-	if not body is CharacterController: return
-	body.is_on_path = false
+func damage(damage_taken: float, source: Unit, weapon: Weapon) -> void:
+	print("took %f damage!" % damage_taken)
+	damaged.emit(damage_taken, source, weapon)

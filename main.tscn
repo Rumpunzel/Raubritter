@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://te7v0r4n0ey7"]
+[gd_scene load_steps=61 format=3 uid="uid://te7v0r4n0ey7"]
 
 [ext_resource type="Texture2D" uid="uid://xhqq3drf3k1f" path="res://assets/cartography_pack/Textures/parchmentFoldedCrinkled.png" id="1_fstis"]
 [ext_resource type="Script" path="res://cart.gd" id="2_im0jv"]
@@ -8,8 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dqipm6nglwu05" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/green_character.png" id="6_5r6u2"]
 [ext_resource type="TileSet" uid="uid://bsq6rtk34ugla" path="res://level/scrible_dungeon.tres" id="6_txin3"]
 [ext_resource type="Texture2D" uid="uid://b64m82qy7lgfy" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/purple_character.png" id="7_n0uir"]
+[ext_resource type="Script" path="res://hit_box.gd" id="8_2nd5j"]
 [ext_resource type="Texture2D" uid="uid://bid2hhgtnqbbx" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/red_character.png" id="8_vg20g"]
-[ext_resource type="Script" path="res://gameplay/character.gd" id="9_uqrn1"]
+[ext_resource type="Script" path="res://gameplay/character_controller.gd" id="9_uqrn1"]
 [ext_resource type="Texture2D" uid="uid://bvno1osa52rt1" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/yellow_character.png" id="9_w4w3j"]
 [ext_resource type="Texture2D" uid="uid://c800up35r4uo0" path="res://assets/shape_characters/PNG/Default/face_a.png" id="10_qk60g"]
 [ext_resource type="Texture2D" uid="uid://dtruseabnq44e" path="res://assets/shape_characters/PNG/Default/face_b.png" id="11_6u1hc"]
@@ -24,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://byv1fv81r5cfb" path="res://assets/shape_characters/PNG/Default/face_j.png" id="20_sf5uo"]
 [ext_resource type="Texture2D" uid="uid://coovox5g02u2w" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/yellow_hand.png" id="21_usndw"]
 [ext_resource type="Texture2D" uid="uid://cc4yyq7v6x3a8" path="res://assets/scribble_dungeons/PNG/Double (128px)/Items/weapon_sword.png" id="22_67on7"]
+[ext_resource type="Script" path="res://sword.gd" id="22_c68rf"]
 [ext_resource type="Texture2D" uid="uid://c2xblo1jh8n8x" path="res://assets/scribble_dungeons/PNG/Double (128px)/Items/shield_curved.png" id="23_uvwos"]
 [ext_resource type="Script" path="res://unit.gd" id="23_ytuju"]
 [ext_resource type="Texture2D" uid="uid://ws41kq4bqk3b" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/green_hand.png" id="24_pmdgg"]
@@ -119,7 +121,10 @@ agent_radius = 16.0
 radius = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mygq0"]
-size = Vector2(64, 96)
+size = Vector2(32, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7mks"]
+size = Vector2(32, 48)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_65y87"]
 radius = 8.0
@@ -147,6 +152,10 @@ frame_9/texture = ExtResource("20_sf5uo")
 frame_9/duration = 1.0
 frame_10/texture = ExtResource("12_jd7l4")
 frame_10/duration = 1.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dtgb3"]
+radius = 12.0
+height = 64.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3amcx"]
 size = Vector2(128, 128)
@@ -183,55 +192,46 @@ layer_0/tile_data = PackedInt32Array(5, 524290, 196608, -65531, 524290, 1, -1310
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Level/Navigation"]
 navigation_polygon = SubResource("NavigationPolygon_ilmwn")
 navigation_layers = 2
-enter_cost = 0.5
 travel_cost = 2.0
 
 [node name="NavigationRegion2D2" type="NavigationRegion2D" parent="Level/Navigation"]
 navigation_polygon = SubResource("NavigationPolygon_se74q")
 navigation_layers = 2
-enter_cost = 0.5
 travel_cost = 2.0
 
 [node name="NavigationRegion2D10" type="NavigationRegion2D" parent="Level/Navigation"]
 navigation_polygon = SubResource("NavigationPolygon_33ook")
 navigation_layers = 2
-enter_cost = 0.5
 travel_cost = 2.0
 
 [node name="NavigationRegion2D3" type="NavigationRegion2D" parent="Level/Navigation"]
 navigation_polygon = SubResource("NavigationPolygon_ndyfm")
 navigation_layers = 2
-enter_cost = 0.5
 travel_cost = 2.0
 
 [node name="NavigationRegion2D4" type="NavigationRegion2D" parent="Level/Navigation"]
 navigation_polygon = SubResource("NavigationPolygon_lkc70")
 navigation_layers = 2
-enter_cost = 0.5
 travel_cost = 2.0
 
 [node name="NavigationRegion2D5" type="NavigationRegion2D" parent="Level/Navigation"]
 navigation_polygon = SubResource("NavigationPolygon_l654i")
 navigation_layers = 2
-enter_cost = 0.5
 travel_cost = 2.0
 
 [node name="NavigationRegion2D6" type="NavigationRegion2D" parent="Level/Navigation"]
 navigation_polygon = SubResource("NavigationPolygon_al61o")
 navigation_layers = 2
-enter_cost = 0.5
 travel_cost = 2.0
 
 [node name="NavigationRegion2D7" type="NavigationRegion2D" parent="Level/Navigation"]
 navigation_polygon = SubResource("NavigationPolygon_204mf")
 navigation_layers = 2
-enter_cost = 0.5
 travel_cost = 2.0
 
 [node name="NavigationRegion2D8" type="NavigationRegion2D" parent="Level/Navigation"]
 navigation_polygon = SubResource("NavigationPolygon_i324r")
 navigation_layers = 2
-enter_cost = 0.5
 travel_cost = 2.0
 
 [node name="Path" type="NavigationRegion2D" parent="Level/Navigation"]
@@ -295,40 +295,52 @@ script = ExtResource("5_e4srb")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level/PathArea"]
 polygon = PackedVector2Array(-1152, -192, -1152, -256, -832, -256, -832, -736, -768, -736, -768, -256, -448, -256, -448, -320, -512, -320, -512, -736, -448, -736, -448, -384, -384, -384, -384, -192, -768, -192, -768, 128, -448, 128, -448, 0, -64, 0, -64, -256, -320, -256, -320, -384, -384, -384, -384, -736, -320, -736, -320, -448, -256, -448, -256, -320, 0, -320, 0, 0, 320, 0, 320, -256, 448, -256, 448, -736, 512, -736, 512, -256, 768, -256, 768, -448, 1152, -448, 1152, -384, 832, -384, 832, -192, 512, -192, 512, -64, 832, -64, 832, 320, 256, 320, 256, 384, 576, 384, 576, 448, 640, 448, 640, 736, 576, 736, 576, 512, 512, 512, 512, 448, 192, 448, 192, 256, 768, 256, 768, 0, 448, 0, 448, -192, 384, -192, 384, 64, 0, 64, 0, 448, -384, 448, -384, 736, -448, 736, -448, 384, -64, 384, -64, 64, -384, 64, -384, 192, -832, 192, -832, -192)
 
-[node name="CharacterBody2D2" type="CharacterBody2D" parent="Level"]
+[node name="Cart" type="CharacterBody2D" parent="Level"]
 position = Vector2(-800, -224)
-scale = Vector2(0.5, 0.5)
 collision_mask = 257
 motion_mode = 1
 script = ExtResource("9_uqrn1")
+mass = 1000.0
 _movement_speed = 32.0
-_turn_speed = 4.0
+_acceleration = 4.0
+_drag = 4.0
+_turn_speed = 2.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/CharacterBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Cart"]
 shape = SubResource("RectangleShape2D_mygq0")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Level/CharacterBody2D2"]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Level/Cart"]
 path_postprocessing = 1
 avoidance_enabled = true
-radius = 96.0
+radius = 48.0
 debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(0, 1, 1, 1)
 
-[node name="Cart" type="Sprite2D" parent="Level/CharacterBody2D2"]
+[node name="HurtBox" type="Area2D" parent="Level/Cart"]
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("8_2nd5j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Cart/HurtBox"]
+shape = SubResource("RectangleShape2D_t7mks")
+debug_color = Color(0.74902, 0.458824, 0, 0.419608)
+
+[node name="Cart" type="Sprite2D" parent="Level/Cart"]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("27_ex3il")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Level"]
+[node name="Unit" type="CharacterBody2D" parent="Level"]
 position = Vector2(352, 32)
 collision_mask = 257
 motion_mode = 1
 script = ExtResource("9_uqrn1")
 _look_direction = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Unit"]
 shape = SubResource("CircleShape2D_65y87")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Level/CharacterBody2D"]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Level/Unit"]
 navigation_layers = 3
 avoidance_enabled = true
 radius = 8.0
@@ -336,11 +348,11 @@ debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0.596078, 0, 1)
 
-[node name="YellowCharacter" type="Sprite2D" parent="Level/CharacterBody2D"]
+[node name="YellowCharacter" type="Sprite2D" parent="Level/Unit"]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("9_w4w3j")
 
-[node name="MarginContainer" type="MarginContainer" parent="Level/CharacterBody2D/YellowCharacter"]
+[node name="MarginContainer" type="MarginContainer" parent="Level/Unit/YellowCharacter"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -355,33 +367,49 @@ theme_override_constants/margin_top = 48
 theme_override_constants/margin_right = 48
 theme_override_constants/margin_bottom = 48
 
-[node name="Face" type="TextureRect" parent="Level/CharacterBody2D/YellowCharacter/MarginContainer"]
+[node name="Face" type="TextureRect" parent="Level/Unit/YellowCharacter/MarginContainer"]
 layout_mode = 2
 texture = SubResource("AnimatedTexture_wmcnl")
 stretch_mode = 5
 
-[node name="YellowHandRight" type="Sprite2D" parent="Level/CharacterBody2D/YellowCharacter"]
+[node name="YellowHandRight" type="Sprite2D" parent="Level/Unit/YellowCharacter"]
 show_behind_parent = true
 position = Vector2(-50, 11)
 texture = ExtResource("21_usndw")
 
-[node name="WeaponSword" type="Sprite2D" parent="Level/CharacterBody2D/YellowCharacter/YellowHandRight"]
+[node name="Sword" type="Area2D" parent="Level/Unit/YellowCharacter"]
 show_behind_parent = true
-position = Vector2(-7, 42)
-rotation = -2.97833
+position = Vector2(-52, 12)
+rotation = -2.96706
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("22_c68rf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Unit/YellowCharacter/Sword"]
+position = Vector2(-4.39589, -47.9654)
+shape = SubResource("CapsuleShape2D_dtgb3")
+debug_color = Color(0.992157, 0, 0.231373, 0.419608)
+
+[node name="WeaponSword" type="Sprite2D" parent="Level/Unit/YellowCharacter/Sword"]
+show_behind_parent = true
+position = Vector2(-2.19543, -41.2454)
+rotation = -0.0112703
 texture = ExtResource("22_67on7")
 
-[node name="YellowHandLeft" type="Sprite2D" parent="Level/CharacterBody2D/YellowCharacter"]
-show_behind_parent = true
-position = Vector2(47, 15)
-texture = ExtResource("21_usndw")
-flip_h = true
+[node name="CooldownTimer" type="Timer" parent="Level/Unit/YellowCharacter/Sword"]
+one_shot = true
 
-[node name="ShieldCurved" type="Sprite2D" parent="Level/CharacterBody2D/YellowCharacter/YellowHandLeft"]
+[node name="ShieldCurved" type="Sprite2D" parent="Level/Unit/YellowCharacter"]
 show_behind_parent = true
-position = Vector2(9, 21)
+position = Vector2(56, 36)
 rotation = 2.7005
 texture = ExtResource("23_uvwos")
+
+[node name="YellowHandLeft" type="Sprite2D" parent="Level/Unit/YellowCharacter/ShieldCurved"]
+position = Vector2(-0.826904, 22.8323)
+rotation = -2.7005
+texture = ExtResource("21_usndw")
+flip_h = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level" groups=["Navigation"]]
 position = Vector2(-32, -160)
@@ -396,7 +424,7 @@ texture = ExtResource("30_2pr38")
 
 [node name="Cart" type="Node" parent="." node_paths=PackedStringArray("_cart", "_destination")]
 script = ExtResource("2_im0jv")
-_cart = NodePath("../Level/CharacterBody2D2")
+_cart = NodePath("../Level/Cart")
 _destination = NodePath("../Level/Exits/Area2D7")
 
 [node name="Healthbars" type="HBoxContainer" parent="Cart"]
@@ -435,10 +463,11 @@ size_flags_vertical = 1
 value = 75.0
 show_percentage = false
 
-[node name="Unit" type="Node" parent="." node_paths=PackedStringArray("_unit")]
+[node name="Unit" type="Node" parent="." node_paths=PackedStringArray("_unit", "_cart")]
 script = ExtResource("23_ytuju")
-_unit = NodePath("../Level/CharacterBody2D")
+_unit = NodePath("../Level/Unit")
 _healthbar_offset = 32.0
+_cart = NodePath("../Level/Cart")
 
 [node name="Healthbars" type="HBoxContainer" parent="Unit"]
 custom_minimum_size = Vector2(48, 8)
@@ -545,3 +574,5 @@ texture = ExtResource("39_oh10u")
 
 [connection signal="body_entered" from="Level/PathArea" to="Level/PathArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Level/PathArea" to="Level/PathArea" method="_on_body_exited"]
+[connection signal="area_entered" from="Level/Unit/YellowCharacter/Sword" to="Level/Unit/YellowCharacter/Sword" method="_on_area_entered"]
+[connection signal="attacked" from="Level/Unit/YellowCharacter/Sword" to="Level/Unit" method="_on_attack"]

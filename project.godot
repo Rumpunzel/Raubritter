@@ -25,6 +25,14 @@ window/size/viewport_height=1080
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[layer_names]
+
+2d_physics/layer_1="UnitCollision"
+2d_physics/layer_3="Scenery"
+2d_physics/layer_5="HurtBoxes"
+2d_physics/layer_6="HitBoxes"
+2d_physics/layer_9="RoutePoints"
+
 [navigation]
 
 2d/default_edge_connection_margin=32.0
