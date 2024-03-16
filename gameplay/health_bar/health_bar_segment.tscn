@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://xefxmikopc2p"]
+
+[ext_resource type="Script" path="res://gameplay/health_bar/health_bar_segment.gd" id="1_xsp21"]
+
+[node name="HealthBarSegment" type="ProgressBar"]
+custom_minimum_size = Vector2(20, 0)
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 25.0
+show_percentage = false
+script = ExtResource("1_xsp21")
+
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]
