@@ -10,7 +10,6 @@ var unit: Unit :
 		unit = new_unit
 		_navgiation_agent.max_speed = unit.movement_speed
 
-@export var _collision_shape: CollisionShape2D
 @export var _navgiation_agent: NavigationAgent2D
 @export var _hit_box: HitBox
 @export var _weapon: WeaponInstance

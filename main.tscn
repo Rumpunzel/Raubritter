@@ -186,7 +186,7 @@ navigation_polygon = ExtResource("4_wr11o")
 position = Vector2(-960, -224)
 
 [node name="Area2D" type="Area2D" parent="Level/Exits"]
-position = Vector2(-160, 0)
+position = Vector2(160, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Exits/Area2D"]
 shape = SubResource("CircleShape2D_wmwkx")
@@ -239,6 +239,7 @@ script = ExtResource("5_e4srb")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level/PathArea"]
 polygon = PackedVector2Array(-1152, -192, -1152, -256, -832, -256, -832, -736, -768, -736, -768, -256, -448, -256, -448, -320, -512, -320, -512, -736, -448, -736, -448, -384, -384, -384, -384, -192, -768, -192, -768, 128, -448, 128, -448, 0, -64, 0, -64, -256, -320, -256, -320, -384, -384, -384, -384, -736, -320, -736, -320, -448, -256, -448, -256, -320, 0, -320, 0, 0, 320, 0, 320, -256, 448, -256, 448, -736, 512, -736, 512, -256, 768, -256, 768, -448, 1152, -448, 1152, -384, 832, -384, 832, -192, 512, -192, 512, -64, 832, -64, 832, 320, 256, 320, 256, 384, 576, 384, 576, 448, 640, 448, 640, 736, 576, 736, 576, 512, 512, 512, 512, 448, 192, 448, 192, 256, 768, 256, 768, 0, 448, 0, 448, -192, 384, -192, 384, 64, 0, 64, 0, 448, -384, 448, -384, 736, -448, 736, -448, 384, -64, 384, -64, 64, -384, 64, -384, 192, -832, 192, -832, -192)
+metadata/_edit_lock_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level" groups=["Navigation"]]
 position = Vector2(-32, -160)
@@ -252,7 +253,7 @@ shape = SubResource("RectangleShape2D_3amcx")
 texture = ExtResource("30_2pr38")
 
 [node name="MiddleOfTheMap" type="Marker2D" parent="Level"]
-position = Vector2(-32, 32)
+position = Vector2(-800, 32)
 gizmo_extents = 256.0
 
 [node name="UnitInstances" type="Node" parent="."]

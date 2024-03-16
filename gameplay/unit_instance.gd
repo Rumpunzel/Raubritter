@@ -36,7 +36,7 @@ func _process(_delta: float) -> void:
 		_character_controller.destination = _destination.global_position
 	_healthbar.update_position(_character_controller)
 
-func damage(damage_taken: float, source: UnitInstance, weapon: WeaponInstance) -> void:
+func damage(damage_taken: float, _source: UnitInstance, _weapon: WeaponInstance) -> void:
 	hit_points -= damage_taken
 	print("took %f damage!" % damage_taken)
 

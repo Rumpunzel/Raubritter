@@ -53,12 +53,11 @@ frame_9/duration = 1.0
 frame_10/texture = ExtResource("5_4gbs8")
 frame_10/duration = 1.0
 
-[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("_collision_shape", "_navgiation_agent", "_hit_box", "_weapon")]
+[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("_navgiation_agent", "_hit_box", "_weapon")]
 collision_mask = 257
 motion_mode = 1
 script = ExtResource("1_udahv")
 _look_direction = 1
-_collision_shape = NodePath("HitBox/CollisionShape2D")
 _navgiation_agent = NodePath("NavigationAgent2D")
 _hit_box = NodePath("HitBox")
 _weapon = NodePath("Sword")

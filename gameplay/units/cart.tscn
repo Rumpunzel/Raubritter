@@ -10,12 +10,11 @@ size = Vector2(32, 48)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t7mks"]
 size = Vector2(32, 48)
 
-[node name="Cart" type="CharacterBody2D" node_paths=PackedStringArray("_collision_shape", "_navgiation_agent", "_hit_box")]
+[node name="Cart" type="CharacterBody2D" node_paths=PackedStringArray("_navgiation_agent", "_hit_box")]
 collision_mask = 257
 motion_mode = 1
 script = ExtResource("1_ghnct")
 health_bar_offset = 48.0
-_collision_shape = NodePath("HitBox/CollisionShape2D")
 _navgiation_agent = NodePath("NavigationAgent2D")
 _hit_box = NodePath("HitBox")
 

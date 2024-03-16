@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bacom4v8o6j12"]
+
+[ext_resource type="StyleBox" uid="uid://cl41ths2aqq54" path="res://gameplay/health_bar/health_bar_segment_separator.tres" id="1_8oooj"]
+
+[node name="HealthBarSegmentSeparator" type="VSeparator"]
+show_behind_parent = true
+theme_override_styles/separator = ExtResource("1_8oooj")

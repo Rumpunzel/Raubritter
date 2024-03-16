@@ -5,6 +5,13 @@
 
 [node name="UnitInstance" type="Node" node_paths=PackedStringArray("_healthbar")]
 script = ExtResource("1_n60dl")
-_healthbar = NodePath("Healthbar")
+_healthbar = NodePath("CanvasLayer/Healthbar")
 
-[node name="Healthbar" parent="." instance=ExtResource("2_bcg2k")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Healthbar" parent="CanvasLayer" instance=ExtResource("2_bcg2k")]
+offset_left = -55.0
+offset_top = -10.0
+offset_right = 39.0
+offset_bottom = 2.0
