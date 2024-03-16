@@ -43,6 +43,7 @@ func _physics_process(delta: float) -> void:
 		var movement_speed := unit.movement_speed * (1.5 if is_on_path else 1.0)
 		velocity = velocity.lerp(_get_forward_axis() * movement_speed, unit.acceleration * delta)
 	move_and_slide()
+	_navgiation_agent.velocity = velocity
 
 func connect_to_unit_instance(unit_instance: UnitInstance) -> void:
 	unit = unit_instance.unit
@@ -61,3 +62,6 @@ func _get_forward_axis() -> Vector2:
 # Called from signal emitted by [WeaponInstance]
 func _on_attack(weapon: Weapon, _weapon_instance: WeaponInstance, hit_box: HitBox) -> void:
 	velocity = -global_position.direction_to(hit_box.global_position) * pow(weapon.recoil, 2.0)
+
+func _on_navigation_velocity_computed(safe_velocity: Vector2) -> void:
+	velocity = safe_velocity
