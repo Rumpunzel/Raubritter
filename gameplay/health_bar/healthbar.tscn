@@ -6,13 +6,14 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_usog3"]
 
-[node name="Healthbar" type="CenterContainer" node_paths=PackedStringArray("_damage_bar", "_health_bar", "_segments_container")]
+[node name="Healthbar" type="CenterContainer" node_paths=PackedStringArray("_damage_bar", "_health_bar", "_segments_container", "_fade_out_timer")]
 offset_right = 94.0
 offset_bottom = 14.0
 script = ExtResource("1_krk3h")
 _damage_bar = NodePath("PanelContainer/MarginContainer/MarginContainer/Damage")
 _health_bar = NodePath("PanelContainer/MarginContainer/MarginContainer/Health")
 _segments_container = NodePath("PanelContainer/MarginContainer/SegmentsContainer")
+_fade_out_timer = NodePath("FadeOutTimer")
 _health_bar_segment = ExtResource("2_erp76")
 _health_bar_segment_separator = ExtResource("3_6bnsn")
 
@@ -73,3 +74,7 @@ layout_mode = 2
 
 [node name="HealthBarSegment4" parent="PanelContainer/MarginContainer/SegmentsContainer" instance=ExtResource("2_erp76")]
 layout_mode = 2
+
+[node name="FadeOutTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="FadeOutTimer" to="." method="fade_out"]

@@ -1,13 +1,19 @@
 class_name Healthbar
 extends Container
 
+@export var _segment_size := 25.0
 @export var _animation_duration := 0.2
 @export var _animation_delay := 0.5
-@export var _segment_size := 25.0
+
+@export var _hide := true
+@export var _fade_in_duration := 0.1
+@export var _fade_out_duration := 1.0
+@export var _fade_out_delay := 5.0
 
 @export var _damage_bar: ProgressBar
 @export var _health_bar: ProgressBar
 @export var _segments_container: Container
+@export var _fade_out_timer: Timer
 
 @export var _health_bar_segment: PackedScene
 @export var _health_bar_segment_separator: PackedScene
@@ -24,6 +30,9 @@ var unit_instance: UnitInstance :
 
 var _health_bar_segments: Array[Control] = [ ]
 
+func _ready() -> void:
+	fade_out(false)
+
 func _process(_delta: float) -> void:
 	if not unit_instance: return
 	update_position()
@@ -36,6 +45,8 @@ func update_hit_points(hit_points: float, show_animation := true) -> void:
 	if show_animation:
 		var tween := create_tween()
 		tween.tween_property(_damage_bar, "value", hit_points, _animation_duration).set_delay(_animation_delay)
+		if not _is_visible(): fade_in()
+		if _hide: _fade_out_timer.start(_fade_out_delay)
 	else:
 		_damage_bar.value = hit_points
 
@@ -55,6 +66,23 @@ func update_max_hit_points(max_hit_points: float) -> void:
 
 func update_position(healthbar_position: Vector2 = unit_instance.get_healthbar_position()) -> void:
 	global_position = healthbar_position - size * 0.5
+
+func fade_in(with_animation := true) -> void:
+	if not with_animation:
+		modulate.a = 1.0
+		return
+	var tween := create_tween()
+	tween.tween_property(self, "modulate:a", 1.0, _fade_in_duration)
+
+func fade_out(with_animation := true) -> void:
+	if not with_animation:
+		modulate.a = 0.0
+		return
+	var tween := create_tween()
+	tween.tween_property(self, "modulate:a", 0.0, _fade_out_duration)
+
+func _is_visible() -> bool:
+	return modulate.a >= 1.0
 
 func _add_health_bar_segment() -> void:
 	var health_bar_segment := _health_bar_segment.instantiate() as Control
