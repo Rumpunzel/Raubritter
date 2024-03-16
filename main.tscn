@@ -1,11 +1,14 @@
-[gd_scene load_steps=38 format=3 uid="uid://te7v0r4n0ey7"]
+[gd_scene load_steps=41 format=3 uid="uid://te7v0r4n0ey7"]
 
 [ext_resource type="Texture2D" uid="uid://xhqq3drf3k1f" path="res://assets/cartography_pack/Textures/parchmentFoldedCrinkled.png" id="1_fstis"]
+[ext_resource type="Script" path="res://gameplay/hud.gd" id="2_ph4we"]
+[ext_resource type="PackedScene" uid="uid://dfc23gd6dpm77" path="res://gameplay/health_bar/healthbar.tscn" id="3_i4cfy"]
 [ext_resource type="NavigationPolygon" uid="uid://bg8vmonomjxs6" path="res://level/path_polygon.tres" id="4_wr11o"]
 [ext_resource type="Texture2D" uid="uid://c4570j7e4r2ku" path="res://assets/cartography_pack/Spritesheet/spritesheet_retina.png" id="5_dr5hk"]
 [ext_resource type="Script" path="res://level/path_area.gd" id="5_e4srb"]
 [ext_resource type="Texture2D" uid="uid://dqipm6nglwu05" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/green_character.png" id="6_5r6u2"]
 [ext_resource type="TileSet" uid="uid://bsq6rtk34ugla" path="res://level/scrible_dungeon.tres" id="6_txin3"]
+[ext_resource type="Script" path="res://gameplay/units.gd" id="7_5ce05"]
 [ext_resource type="Texture2D" uid="uid://b64m82qy7lgfy" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/purple_character.png" id="7_n0uir"]
 [ext_resource type="Texture2D" uid="uid://bid2hhgtnqbbx" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/red_character.png" id="8_vg20g"]
 [ext_resource type="PackedScene" uid="uid://cp66l1yp7w01p" path="res://gameplay/unit_instance.tscn" id="10_vy3cn"]
@@ -107,10 +110,10 @@ size = Vector2(128, 128)
 
 [node name="Main" type="Node"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Background" type="CanvasLayer" parent="."]
 layer = -10
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="Parchment" type="TextureRect" parent="Background"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -119,7 +122,27 @@ grow_vertical = 2
 texture = ExtResource("1_fstis")
 stretch_mode = 1
 
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 10
+script = ExtResource("2_ph4we")
+_healthbar = ExtResource("3_i4cfy")
+
+[node name="Units" type="Node" parent="." node_paths=PackedStringArray("_hud")]
+script = ExtResource("7_5ce05")
+_hud = NodePath("../HUD")
+
+[node name="Thug" parent="Units" node_paths=PackedStringArray("_spawn", "_destination") instance=ExtResource("10_vy3cn")]
+unit = ExtResource("10_xsm5d")
+_spawn = NodePath("../../Level/MiddleOfTheMap")
+_destination = NodePath("../Cart")
+
+[node name="Cart" parent="Units" node_paths=PackedStringArray("_spawn", "_destination") instance=ExtResource("10_vy3cn")]
+unit = ExtResource("11_8bk4e")
+_spawn = NodePath("../../Level/Exits/Area2D")
+_destination = NodePath("../../Level/Exits/Area2D7")
+
 [node name="Level" type="Node2D" parent="."]
+z_index = -5
 
 [node name="SpritesheetRetina" type="Sprite2D" parent="Level"]
 position = Vector2(-1942, -45)
@@ -255,18 +278,6 @@ texture = ExtResource("30_2pr38")
 [node name="MiddleOfTheMap" type="Marker2D" parent="Level"]
 position = Vector2(-800, 32)
 gizmo_extents = 256.0
-
-[node name="UnitInstances" type="Node" parent="."]
-
-[node name="Thug" parent="UnitInstances" node_paths=PackedStringArray("_spawn", "_destination") instance=ExtResource("10_vy3cn")]
-unit = ExtResource("10_xsm5d")
-_spawn = NodePath("../../Level/MiddleOfTheMap")
-_destination = NodePath("../Cart")
-
-[node name="Cart" parent="UnitInstances" node_paths=PackedStringArray("_spawn", "_destination") instance=ExtResource("10_vy3cn")]
-unit = ExtResource("11_8bk4e")
-_spawn = NodePath("../../Level/Exits/Area2D")
-_destination = NodePath("../../Level/Exits/Area2D7")
 
 [node name="GreenCharacter" type="Sprite2D" parent="."]
 position = Vector2(-993, -472)

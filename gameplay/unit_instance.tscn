@@ -1,17 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cp66l1yp7w01p"]
+[gd_scene load_steps=2 format=3 uid="uid://cp66l1yp7w01p"]
 
 [ext_resource type="Script" path="res://gameplay/unit_instance.gd" id="1_n60dl"]
-[ext_resource type="PackedScene" uid="uid://dfc23gd6dpm77" path="res://gameplay/health_bar/healthbar.tscn" id="2_bcg2k"]
 
-[node name="UnitInstance" type="Node" node_paths=PackedStringArray("_healthbar")]
+[node name="UnitInstance" type="Node"]
 script = ExtResource("1_n60dl")
-_healthbar = NodePath("CanvasLayer/Healthbar")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 10
-
-[node name="Healthbar" parent="CanvasLayer" instance=ExtResource("2_bcg2k")]
-offset_left = -55.0
-offset_top = -10.0
-offset_right = 39.0
-offset_bottom = 2.0

@@ -12,7 +12,20 @@ extends Container
 @export var _health_bar_segment: PackedScene
 @export var _health_bar_segment_separator: PackedScene
 
+var unit_instance: UnitInstance :
+	set(new_unit_instance):
+		unit_instance = new_unit_instance
+		var unit := unit_instance.unit
+		update_max_hit_points(unit.hit_points)
+		custom_minimum_size.y = unit.health_bar_girth
+		unit_instance.hit_points_changed.connect(update_hit_points)
+		unit_instance.tree_exiting.connect(queue_free)
+
 var _health_bar_segments: Array[Control] = [ ]
+
+func _process(_delta: float) -> void:
+	if not unit_instance: return
+	update_position(unit_instance.get_healthbar_position())
 
 func update_hit_points(hit_points: float, show_animation := true) -> void:
 	_health_bar.value = hit_points
@@ -39,9 +52,8 @@ func update_max_hit_points(max_hit_points: float) -> void:
 		_health_bar.max_value = max_hit_points
 	update_hit_points(max_hit_points, false)
 
-func update_position(character_controller: CharacterController) -> void:
-	var in_world_position := character_controller.global_position - Vector2(0.0, character_controller.health_bar_offset) - size * 0.5
-	global_position = character_controller.get_viewport_transform() * in_world_position
+func update_position(healthbar_position: Vector2) -> void:
+	global_position = healthbar_position - size * 0.5
 
 func _add_health_bar_segment() -> void:
 	var health_bar_segment := _health_bar_segment.instantiate() as Control
