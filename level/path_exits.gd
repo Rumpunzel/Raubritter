@@ -8,3 +8,11 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
+
+func get_random_exit() -> PathExit:
+	return get_children().pick_random()
+
+func get_random_destination(start: PathExit) -> PathExit:
+	var path_exits := get_children()
+	path_exits.erase(start)
+	return path_exits.pick_random()
