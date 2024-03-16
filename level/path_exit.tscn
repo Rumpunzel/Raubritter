@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7qvvci88mcex"]
+
+[ext_resource type="Script" path="res://level/path_exit.gd" id="1_uaonb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wmwkx"]
+radius = 16.0
+
+[node name="PathExit" type="Area2D"]
+position = Vector2(160, 0)
+script = ExtResource("1_uaonb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wmwkx")
