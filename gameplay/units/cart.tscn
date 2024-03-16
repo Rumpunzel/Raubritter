@@ -10,8 +10,9 @@ size = Vector2(32, 48)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t7mks"]
 size = Vector2(32, 48)
 
-[node name="Cart" type="CharacterBody2D" node_paths=PackedStringArray("_navgiation_agent", "_hit_box")]
-collision_mask = 257
+[node name="Cart" type="CharacterBody2D" node_paths=PackedStringArray("_navgiation_agent", "_hit_box") groups=["Cart"]]
+collision_layer = 2
+collision_mask = 262
 motion_mode = 1
 script = ExtResource("1_ghnct")
 health_bar_offset = 48.0
@@ -25,6 +26,8 @@ shape = SubResource("RectangleShape2D_mygq0")
 path_postprocessing = 1
 avoidance_enabled = true
 radius = 48.0
+avoidance_layers = 2
+avoidance_mask = 2
 debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(0, 1, 1, 1)
