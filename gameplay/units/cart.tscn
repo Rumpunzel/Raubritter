@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://c14qnt50sx0bd"]
+
+[ext_resource type="Script" path="res://gameplay/character_controller.gd" id="1_ghnct"]
+[ext_resource type="Script" path="res://gameplay/hit_box.gd" id="2_fsbn1"]
+[ext_resource type="Texture2D" uid="uid://cmkqt1tp6jda3" path="res://assets/scribble_dungeons/PNG/Double (128px)/cart.png" id="3_bq2hg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mygq0"]
+size = Vector2(32, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7mks"]
+size = Vector2(32, 48)
+
+[node name="Cart" type="CharacterBody2D" node_paths=PackedStringArray("_collision_shape", "_navgiation_agent", "_hit_box")]
+collision_mask = 257
+motion_mode = 1
+script = ExtResource("1_ghnct")
+health_bar_offset = 48.0
+_collision_shape = NodePath("HitBox/CollisionShape2D")
+_navgiation_agent = NodePath("NavigationAgent2D")
+_hit_box = NodePath("HitBox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mygq0")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 48.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0, 1, 1, 1)
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("2_fsbn1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("RectangleShape2D_t7mks")
+debug_color = Color(0.74902, 0.458824, 0, 0.419608)
+
+[node name="Cart" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_bq2hg")

@@ -1,0 +1,150 @@
+[gd_scene load_steps=24 format=3 uid="uid://cevha86xlk3n2"]
+
+[ext_resource type="Script" path="res://gameplay/character_controller.gd" id="1_udahv"]
+[ext_resource type="Script" path="res://gameplay/hit_box.gd" id="2_fpakx"]
+[ext_resource type="Texture2D" uid="uid://bvno1osa52rt1" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/yellow_character.png" id="2_xcaj2"]
+[ext_resource type="Texture2D" uid="uid://c800up35r4uo0" path="res://assets/shape_characters/PNG/Default/face_a.png" id="3_il1p5"]
+[ext_resource type="Texture2D" uid="uid://dtruseabnq44e" path="res://assets/shape_characters/PNG/Default/face_b.png" id="4_u5q2j"]
+[ext_resource type="Texture2D" uid="uid://cs0htu1nmklu0" path="res://assets/shape_characters/PNG/Default/face_k.png" id="5_4gbs8"]
+[ext_resource type="Texture2D" uid="uid://cmlqw6wvyuw8l" path="res://assets/shape_characters/PNG/Default/face_c.png" id="6_ryq5o"]
+[ext_resource type="Texture2D" uid="uid://c2dr1kmjwontx" path="res://assets/shape_characters/PNG/Default/face_d.png" id="7_d18gm"]
+[ext_resource type="Texture2D" uid="uid://bk25byw8drf3b" path="res://assets/shape_characters/PNG/Default/face_e.png" id="8_rx6ei"]
+[ext_resource type="Texture2D" uid="uid://cbls668x6kfc3" path="res://assets/shape_characters/PNG/Default/face_f.png" id="9_ci6mj"]
+[ext_resource type="Texture2D" uid="uid://qbpeop7v5p8d" path="res://assets/shape_characters/PNG/Default/face_g.png" id="10_u3sqs"]
+[ext_resource type="Texture2D" uid="uid://bn38ycirul5te" path="res://assets/shape_characters/PNG/Default/face_h.png" id="11_0sy8b"]
+[ext_resource type="Texture2D" uid="uid://dyuoaoduixh1s" path="res://assets/shape_characters/PNG/Default/face_i.png" id="12_cmulh"]
+[ext_resource type="Texture2D" uid="uid://byv1fv81r5cfb" path="res://assets/shape_characters/PNG/Default/face_j.png" id="13_qn47q"]
+[ext_resource type="Texture2D" uid="uid://coovox5g02u2w" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/yellow_hand.png" id="14_euek1"]
+[ext_resource type="Script" path="res://gameplay/weapon_instance.gd" id="15_j16gg"]
+[ext_resource type="Resource" uid="uid://d23plk235jxas" path="res://gameplay/weapons/sword.tres" id="16_a8i7a"]
+[ext_resource type="Texture2D" uid="uid://cc4yyq7v6x3a8" path="res://assets/scribble_dungeons/PNG/Double (128px)/Items/weapon_sword.png" id="17_7bpt7"]
+[ext_resource type="Texture2D" uid="uid://c2xblo1jh8n8x" path="res://assets/scribble_dungeons/PNG/Double (128px)/Items/shield_curved.png" id="18_vb3jj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_65y87"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q6bcg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dtgb3"]
+radius = 12.0
+height = 64.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_wmcnl"]
+frames = 11
+frame_0/texture = ExtResource("3_il1p5")
+frame_1/texture = ExtResource("4_u5q2j")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("6_ryq5o")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("7_d18gm")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("8_rx6ei")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("9_ci6mj")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("10_u3sqs")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("11_0sy8b")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("12_cmulh")
+frame_8/duration = 1.0
+frame_9/texture = ExtResource("13_qn47q")
+frame_9/duration = 1.0
+frame_10/texture = ExtResource("5_4gbs8")
+frame_10/duration = 1.0
+
+[node name="Unit" type="CharacterBody2D" node_paths=PackedStringArray("_collision_shape", "_navgiation_agent", "_hit_box", "_weapon")]
+collision_mask = 257
+motion_mode = 1
+script = ExtResource("1_udahv")
+_look_direction = 1
+_collision_shape = NodePath("HitBox/CollisionShape2D")
+_navgiation_agent = NodePath("NavigationAgent2D")
+_hit_box = NodePath("HitBox")
+_weapon = NodePath("Sword")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_65y87")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+navigation_layers = 3
+avoidance_enabled = true
+radius = 8.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0.596078, 0, 1)
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("2_fpakx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_q6bcg")
+debug_color = Color(0.74902, 0.458824, 0, 0.419608)
+
+[node name="Sword" type="Area2D" parent="."]
+show_behind_parent = true
+position = Vector2(-13, 3)
+rotation = -2.96706
+scale = Vector2(0.25, 0.25)
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("15_j16gg")
+_weapon = ExtResource("16_a8i7a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
+position = Vector2(-4.39589, -47.9654)
+shape = SubResource("CapsuleShape2D_dtgb3")
+debug_color = Color(0.992157, 0, 0.231373, 0.419608)
+
+[node name="WeaponSword" type="Sprite2D" parent="Sword"]
+show_behind_parent = true
+position = Vector2(-2.19543, -41.2454)
+rotation = -0.0112703
+texture = ExtResource("17_7bpt7")
+
+[node name="CooldownTimer" type="Timer" parent="Sword"]
+one_shot = true
+
+[node name="YellowCharacter" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_xcaj2")
+
+[node name="MarginContainer" type="MarginContainer" parent="YellowCharacter"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = -64.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="Face" type="TextureRect" parent="YellowCharacter/MarginContainer"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_wmcnl")
+stretch_mode = 5
+
+[node name="YellowHandRight" type="Sprite2D" parent="YellowCharacter"]
+show_behind_parent = true
+position = Vector2(-50, 11)
+texture = ExtResource("14_euek1")
+
+[node name="ShieldCurved" type="Sprite2D" parent="YellowCharacter"]
+show_behind_parent = true
+position = Vector2(56, 36)
+rotation = 2.7005
+texture = ExtResource("18_vb3jj")
+
+[node name="YellowHandLeft" type="Sprite2D" parent="YellowCharacter/ShieldCurved"]
+position = Vector2(-0.826904, 22.8323)
+rotation = -2.7005
+texture = ExtResource("14_euek1")
+flip_h = true
+
+[connection signal="area_entered" from="Sword" to="Sword" method="_on_area_entered"]
+[connection signal="attacked" from="Sword" to="." method="_on_attack"]

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Unit" load_steps=3 format=3 uid="uid://ccbs3vjek7dhw"]
+
+[ext_resource type="Script" path="res://gameplay/unit.gd" id="1_60c0c"]
+[ext_resource type="PackedScene" uid="uid://c14qnt50sx0bd" path="res://gameplay/units/cart.tscn" id="1_e7c7i"]
+
+[resource]
+script = ExtResource("1_60c0c")
+name = "Cart"
+color = Color(0, 0, 0, 1)
+hit_points = 100.0
+health_bar_girth = 12.0
+mass = 1000.0
+movement_speed = 32.0
+acceleration = 4.0
+drag = 4.0
+turn_speed = 2.0
+_scene = ExtResource("1_e7c7i")

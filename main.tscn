@@ -1,37 +1,19 @@
-[gd_scene load_steps=61 format=3 uid="uid://te7v0r4n0ey7"]
+[gd_scene load_steps=38 format=3 uid="uid://te7v0r4n0ey7"]
 
 [ext_resource type="Texture2D" uid="uid://xhqq3drf3k1f" path="res://assets/cartography_pack/Textures/parchmentFoldedCrinkled.png" id="1_fstis"]
-[ext_resource type="Script" path="res://cart.gd" id="2_im0jv"]
 [ext_resource type="NavigationPolygon" uid="uid://bg8vmonomjxs6" path="res://level/path_polygon.tres" id="4_wr11o"]
 [ext_resource type="Texture2D" uid="uid://c4570j7e4r2ku" path="res://assets/cartography_pack/Spritesheet/spritesheet_retina.png" id="5_dr5hk"]
 [ext_resource type="Script" path="res://level/path_area.gd" id="5_e4srb"]
 [ext_resource type="Texture2D" uid="uid://dqipm6nglwu05" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/green_character.png" id="6_5r6u2"]
 [ext_resource type="TileSet" uid="uid://bsq6rtk34ugla" path="res://level/scrible_dungeon.tres" id="6_txin3"]
 [ext_resource type="Texture2D" uid="uid://b64m82qy7lgfy" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/purple_character.png" id="7_n0uir"]
-[ext_resource type="Script" path="res://hit_box.gd" id="8_2nd5j"]
 [ext_resource type="Texture2D" uid="uid://bid2hhgtnqbbx" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/red_character.png" id="8_vg20g"]
-[ext_resource type="Script" path="res://gameplay/character_controller.gd" id="9_uqrn1"]
-[ext_resource type="Texture2D" uid="uid://bvno1osa52rt1" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/yellow_character.png" id="9_w4w3j"]
-[ext_resource type="Texture2D" uid="uid://c800up35r4uo0" path="res://assets/shape_characters/PNG/Default/face_a.png" id="10_qk60g"]
-[ext_resource type="Texture2D" uid="uid://dtruseabnq44e" path="res://assets/shape_characters/PNG/Default/face_b.png" id="11_6u1hc"]
-[ext_resource type="Texture2D" uid="uid://cs0htu1nmklu0" path="res://assets/shape_characters/PNG/Default/face_k.png" id="12_jd7l4"]
-[ext_resource type="Texture2D" uid="uid://cmlqw6wvyuw8l" path="res://assets/shape_characters/PNG/Default/face_c.png" id="13_ku0oi"]
-[ext_resource type="Texture2D" uid="uid://c2dr1kmjwontx" path="res://assets/shape_characters/PNG/Default/face_d.png" id="14_m7trx"]
-[ext_resource type="Texture2D" uid="uid://bk25byw8drf3b" path="res://assets/shape_characters/PNG/Default/face_e.png" id="15_opdee"]
-[ext_resource type="Texture2D" uid="uid://cbls668x6kfc3" path="res://assets/shape_characters/PNG/Default/face_f.png" id="16_vmtev"]
-[ext_resource type="Texture2D" uid="uid://qbpeop7v5p8d" path="res://assets/shape_characters/PNG/Default/face_g.png" id="17_5sbac"]
-[ext_resource type="Texture2D" uid="uid://bn38ycirul5te" path="res://assets/shape_characters/PNG/Default/face_h.png" id="18_mkrk3"]
-[ext_resource type="Texture2D" uid="uid://dyuoaoduixh1s" path="res://assets/shape_characters/PNG/Default/face_i.png" id="19_ed2qf"]
-[ext_resource type="Texture2D" uid="uid://byv1fv81r5cfb" path="res://assets/shape_characters/PNG/Default/face_j.png" id="20_sf5uo"]
-[ext_resource type="Texture2D" uid="uid://coovox5g02u2w" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/yellow_hand.png" id="21_usndw"]
-[ext_resource type="Texture2D" uid="uid://cc4yyq7v6x3a8" path="res://assets/scribble_dungeons/PNG/Double (128px)/Items/weapon_sword.png" id="22_67on7"]
-[ext_resource type="Script" path="res://sword.gd" id="22_c68rf"]
-[ext_resource type="Texture2D" uid="uid://c2xblo1jh8n8x" path="res://assets/scribble_dungeons/PNG/Double (128px)/Items/shield_curved.png" id="23_uvwos"]
-[ext_resource type="Script" path="res://unit.gd" id="23_ytuju"]
+[ext_resource type="PackedScene" uid="uid://cp66l1yp7w01p" path="res://gameplay/unit_instance.tscn" id="10_vy3cn"]
+[ext_resource type="Resource" uid="uid://du6cbrycvnkqb" path="res://gameplay/units/thug.tres" id="10_xsm5d"]
+[ext_resource type="Resource" uid="uid://ccbs3vjek7dhw" path="res://gameplay/units/cart.tres" id="11_8bk4e"]
 [ext_resource type="Texture2D" uid="uid://ws41kq4bqk3b" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/green_hand.png" id="24_pmdgg"]
 [ext_resource type="Texture2D" uid="uid://d10fftl3fyu70" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/purple_hand.png" id="25_k5472"]
 [ext_resource type="Texture2D" uid="uid://b3808x18dbkpx" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/red_hand.png" id="26_t7bkg"]
-[ext_resource type="Texture2D" uid="uid://cmkqt1tp6jda3" path="res://assets/scribble_dungeons/PNG/Double (128px)/cart.png" id="27_ex3il"]
 [ext_resource type="Texture2D" uid="uid://b2f1x3ebi52vv" path="res://assets/scribble_dungeons/PNG/Double (128px)/chest.png" id="28_koq63"]
 [ext_resource type="Texture2D" uid="uid://c4lf5w7728sm8" path="res://assets/scribble_dungeons/PNG/Double (128px)/coffin.png" id="29_axvj0"]
 [ext_resource type="Texture2D" uid="uid://cd08da634c3et" path="res://assets/scribble_dungeons/PNG/Double (128px)/crate.png" id="30_2pr38"]
@@ -119,43 +101,6 @@ agent_radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wmwkx"]
 radius = 16.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mygq0"]
-size = Vector2(32, 48)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7mks"]
-size = Vector2(32, 48)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_65y87"]
-radius = 8.0
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_wmcnl"]
-frames = 11
-frame_0/texture = ExtResource("10_qk60g")
-frame_1/texture = ExtResource("11_6u1hc")
-frame_1/duration = 1.0
-frame_2/texture = ExtResource("13_ku0oi")
-frame_2/duration = 1.0
-frame_3/texture = ExtResource("14_m7trx")
-frame_3/duration = 1.0
-frame_4/texture = ExtResource("15_opdee")
-frame_4/duration = 1.0
-frame_5/texture = ExtResource("16_vmtev")
-frame_5/duration = 1.0
-frame_6/texture = ExtResource("17_5sbac")
-frame_6/duration = 1.0
-frame_7/texture = ExtResource("18_mkrk3")
-frame_7/duration = 1.0
-frame_8/texture = ExtResource("19_ed2qf")
-frame_8/duration = 1.0
-frame_9/texture = ExtResource("20_sf5uo")
-frame_9/duration = 1.0
-frame_10/texture = ExtResource("12_jd7l4")
-frame_10/duration = 1.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dtgb3"]
-radius = 12.0
-height = 64.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3amcx"]
 size = Vector2(128, 128)
@@ -295,122 +240,6 @@ script = ExtResource("5_e4srb")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level/PathArea"]
 polygon = PackedVector2Array(-1152, -192, -1152, -256, -832, -256, -832, -736, -768, -736, -768, -256, -448, -256, -448, -320, -512, -320, -512, -736, -448, -736, -448, -384, -384, -384, -384, -192, -768, -192, -768, 128, -448, 128, -448, 0, -64, 0, -64, -256, -320, -256, -320, -384, -384, -384, -384, -736, -320, -736, -320, -448, -256, -448, -256, -320, 0, -320, 0, 0, 320, 0, 320, -256, 448, -256, 448, -736, 512, -736, 512, -256, 768, -256, 768, -448, 1152, -448, 1152, -384, 832, -384, 832, -192, 512, -192, 512, -64, 832, -64, 832, 320, 256, 320, 256, 384, 576, 384, 576, 448, 640, 448, 640, 736, 576, 736, 576, 512, 512, 512, 512, 448, 192, 448, 192, 256, 768, 256, 768, 0, 448, 0, 448, -192, 384, -192, 384, 64, 0, 64, 0, 448, -384, 448, -384, 736, -448, 736, -448, 384, -64, 384, -64, 64, -384, 64, -384, 192, -832, 192, -832, -192)
 
-[node name="Cart" type="CharacterBody2D" parent="Level"]
-position = Vector2(-800, -224)
-collision_mask = 257
-motion_mode = 1
-script = ExtResource("9_uqrn1")
-mass = 1000.0
-_movement_speed = 32.0
-_acceleration = 4.0
-_drag = 4.0
-_turn_speed = 2.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Cart"]
-shape = SubResource("RectangleShape2D_mygq0")
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Level/Cart"]
-path_postprocessing = 1
-avoidance_enabled = true
-radius = 48.0
-debug_enabled = true
-debug_use_custom = true
-debug_path_custom_color = Color(0, 1, 1, 1)
-
-[node name="HurtBox" type="Area2D" parent="Level/Cart"]
-collision_layer = 16
-collision_mask = 32
-script = ExtResource("8_2nd5j")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Cart/HurtBox"]
-shape = SubResource("RectangleShape2D_t7mks")
-debug_color = Color(0.74902, 0.458824, 0, 0.419608)
-
-[node name="Cart" type="Sprite2D" parent="Level/Cart"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("27_ex3il")
-
-[node name="Unit" type="CharacterBody2D" parent="Level"]
-position = Vector2(352, 32)
-collision_mask = 257
-motion_mode = 1
-script = ExtResource("9_uqrn1")
-_look_direction = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Unit"]
-shape = SubResource("CircleShape2D_65y87")
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Level/Unit"]
-navigation_layers = 3
-avoidance_enabled = true
-radius = 8.0
-debug_enabled = true
-debug_use_custom = true
-debug_path_custom_color = Color(1, 0.596078, 0, 1)
-
-[node name="YellowCharacter" type="Sprite2D" parent="Level/Unit"]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("9_w4w3j")
-
-[node name="MarginContainer" type="MarginContainer" parent="Level/Unit/YellowCharacter"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -64.0
-offset_right = -64.0
-offset_bottom = -64.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 48
-theme_override_constants/margin_top = 48
-theme_override_constants/margin_right = 48
-theme_override_constants/margin_bottom = 48
-
-[node name="Face" type="TextureRect" parent="Level/Unit/YellowCharacter/MarginContainer"]
-layout_mode = 2
-texture = SubResource("AnimatedTexture_wmcnl")
-stretch_mode = 5
-
-[node name="YellowHandRight" type="Sprite2D" parent="Level/Unit/YellowCharacter"]
-show_behind_parent = true
-position = Vector2(-50, 11)
-texture = ExtResource("21_usndw")
-
-[node name="Sword" type="Area2D" parent="Level/Unit/YellowCharacter"]
-show_behind_parent = true
-position = Vector2(-52, 12)
-rotation = -2.96706
-collision_layer = 32
-collision_mask = 16
-script = ExtResource("22_c68rf")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Unit/YellowCharacter/Sword"]
-position = Vector2(-4.39589, -47.9654)
-shape = SubResource("CapsuleShape2D_dtgb3")
-debug_color = Color(0.992157, 0, 0.231373, 0.419608)
-
-[node name="WeaponSword" type="Sprite2D" parent="Level/Unit/YellowCharacter/Sword"]
-show_behind_parent = true
-position = Vector2(-2.19543, -41.2454)
-rotation = -0.0112703
-texture = ExtResource("22_67on7")
-
-[node name="CooldownTimer" type="Timer" parent="Level/Unit/YellowCharacter/Sword"]
-one_shot = true
-
-[node name="ShieldCurved" type="Sprite2D" parent="Level/Unit/YellowCharacter"]
-show_behind_parent = true
-position = Vector2(56, 36)
-rotation = 2.7005
-texture = ExtResource("23_uvwos")
-
-[node name="YellowHandLeft" type="Sprite2D" parent="Level/Unit/YellowCharacter/ShieldCurved"]
-position = Vector2(-0.826904, 22.8323)
-rotation = -2.7005
-texture = ExtResource("21_usndw")
-flip_h = true
-
 [node name="StaticBody2D" type="StaticBody2D" parent="Level" groups=["Navigation"]]
 position = Vector2(-32, -160)
 
@@ -422,87 +251,21 @@ shape = SubResource("RectangleShape2D_3amcx")
 [node name="Crate" type="Sprite2D" parent="Level/StaticBody2D"]
 texture = ExtResource("30_2pr38")
 
-[node name="Cart" type="Node" parent="." node_paths=PackedStringArray("_cart", "_destination")]
-script = ExtResource("2_im0jv")
-_cart = NodePath("../Level/Cart")
-_destination = NodePath("../Level/Exits/Area2D7")
+[node name="MiddleOfTheMap" type="Marker2D" parent="Level"]
+position = Vector2(-32, 32)
+gizmo_extents = 256.0
 
-[node name="Healthbars" type="HBoxContainer" parent="Cart"]
-custom_minimum_size = Vector2(64, 16)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -8.0
-offset_right = 32.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(32, 8)
+[node name="UnitInstances" type="Node" parent="."]
 
-[node name="ProgressBar" type="ProgressBar" parent="Cart/Healthbars"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-value = 100.0
-show_percentage = false
+[node name="Thug" parent="UnitInstances" node_paths=PackedStringArray("_spawn", "_destination") instance=ExtResource("10_vy3cn")]
+unit = ExtResource("10_xsm5d")
+_spawn = NodePath("../../Level/MiddleOfTheMap")
+_destination = NodePath("../Cart")
 
-[node name="ProgressBar2" type="ProgressBar" parent="Cart/Healthbars"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-value = 100.0
-show_percentage = false
-
-[node name="ProgressBar3" type="ProgressBar" parent="Cart/Healthbars"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-value = 75.0
-show_percentage = false
-
-[node name="Unit" type="Node" parent="." node_paths=PackedStringArray("_unit", "_cart")]
-script = ExtResource("23_ytuju")
-_unit = NodePath("../Level/Unit")
-_healthbar_offset = 32.0
-_cart = NodePath("../Level/Cart")
-
-[node name="Healthbars" type="HBoxContainer" parent="Unit"]
-custom_minimum_size = Vector2(48, 8)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -8.0
-offset_right = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(24, 4)
-
-[node name="ProgressBar" type="ProgressBar" parent="Unit/Healthbars"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-value = 100.0
-show_percentage = false
-
-[node name="ProgressBar2" type="ProgressBar" parent="Unit/Healthbars"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-value = 100.0
-show_percentage = false
-
-[node name="ProgressBar3" type="ProgressBar" parent="Unit/Healthbars"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-value = 75.0
-show_percentage = false
+[node name="Cart" parent="UnitInstances" node_paths=PackedStringArray("_spawn", "_destination") instance=ExtResource("10_vy3cn")]
+unit = ExtResource("11_8bk4e")
+_spawn = NodePath("../../Level/Exits/Area2D")
+_destination = NodePath("../../Level/Exits/Area2D7")
 
 [node name="GreenCharacter" type="Sprite2D" parent="."]
 position = Vector2(-993, -472)
@@ -574,5 +337,3 @@ texture = ExtResource("39_oh10u")
 
 [connection signal="body_entered" from="Level/PathArea" to="Level/PathArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Level/PathArea" to="Level/PathArea" method="_on_body_exited"]
-[connection signal="area_entered" from="Level/Unit/YellowCharacter/Sword" to="Level/Unit/YellowCharacter/Sword" method="_on_area_entered"]
-[connection signal="attacked" from="Level/Unit/YellowCharacter/Sword" to="Level/Unit" method="_on_attack"]

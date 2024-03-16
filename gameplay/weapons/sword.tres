@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="WeaponAttributes" load_steps=2 format=3 uid="uid://d23plk235jxas"]
+
+[ext_resource type="Script" path="res://gameplay/weapon.gd" id="1_okksw"]
+
+[resource]
+script = ExtResource("1_okksw")
+damage = 1.0
+recoil = 32.0
+cooldown = 0.5
