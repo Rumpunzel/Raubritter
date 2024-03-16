@@ -4,6 +4,4 @@
 
 [resource]
 script = ExtResource("1_okksw")
-damage = 1.0
-recoil = 32.0
-cooldown = 0.5
+name = "Sword"

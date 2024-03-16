@@ -31,9 +31,10 @@ func _process(_delta: float) -> void:
 		if not destination: return
 	_character_controller.destination = destination.global_position
 
-func damage(damage_taken: float, _source: UnitInstance, _weapon: WeaponInstance) -> void:
+func damage(damage_taken: float, source: UnitInstance, weapon: Weapon) -> void:
 	hit_points -= damage_taken
 	if hit_points <= 0.0: _die()
+	_character_controller.knockback(source.get_position(), weapon.recoil, false)
 
 func spawn(spawn_point: Node2D) -> void:
 	spawn_at(spawn_point.global_position)
@@ -58,5 +59,5 @@ func _die() -> void:
 	queue_free()
 
 # Called from signal emitted by [WeaponInstance]
-func _on_attacked(weapon: Weapon, weapon_instance: WeaponInstance, hit_box: HitBox) -> void:
-	hit_box.damage(weapon.damage, self, weapon_instance)
+func _on_attacked(weapon: Weapon, _weapon_instance: WeaponInstance, hit_box: HitBox) -> void:
+	hit_box.damage(weapon.damage, self, weapon)

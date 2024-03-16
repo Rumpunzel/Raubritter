@@ -19,5 +19,6 @@ func _process(_delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if not area is HitBox: return
 	attacked.emit(_weapon, self, area)
-	_collision_shape.set_disabled.bind(true).call_deferred()
-	_cooldown_timer.start(_weapon.cooldown)
+	if _weapon.cooldown > 0.0:
+		_collision_shape.set_disabled.bind(true).call_deferred()
+		_cooldown_timer.start(_weapon.cooldown)

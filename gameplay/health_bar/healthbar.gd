@@ -5,7 +5,7 @@ extends Container
 @export var _animation_duration := 0.2
 @export var _animation_delay := 0.5
 
-@export var _hide := true
+@export var _auto_hide := true
 @export var _fade_in_duration := 0.1
 @export var _fade_out_duration := 1.0
 @export var _fade_out_delay := 5.0
@@ -46,7 +46,7 @@ func update_hit_points(hit_points: float, show_animation := true) -> void:
 		var tween := create_tween()
 		tween.tween_property(_damage_bar, "value", hit_points, _animation_duration).set_delay(_animation_delay)
 		if not _is_visible(): fade_in()
-		if _hide: _fade_out_timer.start(_fade_out_delay)
+		if _auto_hide: _fade_out_timer.start(_fade_out_delay)
 	else:
 		_damage_bar.value = hit_points
 

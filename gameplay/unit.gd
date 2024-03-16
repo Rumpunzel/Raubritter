@@ -8,7 +8,7 @@ const UNIT_INSTANCE: PackedScene = preload("res://gameplay/unit_instance.tscn")
 @export var hit_points := 100.0
 @export var health_bar_girth := 8.0
 
-@export var mass := 75.0
+@export var mass := 64.0
 @export var movement_speed := 64.0
 @export var acceleration := 16.0
 @export var drag := 8.0

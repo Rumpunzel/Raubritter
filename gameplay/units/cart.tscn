@@ -12,7 +12,7 @@ size = Vector2(32, 48)
 
 [node name="Cart" type="CharacterBody2D" node_paths=PackedStringArray("_navgiation_agent", "_hit_box") groups=["Cart"]]
 collision_layer = 2
-collision_mask = 262
+collision_mask = 260
 motion_mode = 1
 script = ExtResource("1_ghnct")
 health_bar_offset = 48.0

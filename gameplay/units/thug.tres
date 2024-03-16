@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Unit" load_steps=3 format=3 uid="uid://du6cbrycvnkqb"]
 
-[ext_resource type="PackedScene" uid="uid://cevha86xlk3n2" path="res://gameplay/units/unit.tscn" id="1_k7vvx"]
 [ext_resource type="Script" path="res://gameplay/unit.gd" id="1_rehtj"]
+[ext_resource type="PackedScene" uid="uid://cevha86xlk3n2" path="res://gameplay/units/unit.tscn" id="1_y3mv8"]
 
 [resource]
 script = ExtResource("1_rehtj")
@@ -14,4 +14,4 @@ movement_speed = 64.0
 acceleration = 16.0
 drag = 8.0
 turn_speed = 8.0
-_scene = ExtResource("1_k7vvx")
+_scene = ExtResource("1_y3mv8")

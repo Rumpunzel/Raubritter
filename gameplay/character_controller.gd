@@ -20,6 +20,7 @@ var destination: Vector2 :
 	set(new_destination): _navgiation_agent.target_position = new_destination
 
 var _look_vector: Vector2
+var _is_knocking_back := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,16 +35,22 @@ func _process(_delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	if _navgiation_agent.is_navigation_finished(): return
-	var next_path_position := _navgiation_agent.get_next_path_position()
-	var motion := next_path_position - global_position
-	rotation = lerp_angle(rotation, _look_vector.angle_to(motion), unit.turn_speed * delta)
-	velocity = velocity.lerp(Vector2.ZERO, unit.drag * delta)
-	if not Input.is_key_pressed(KEY_S):
-		var movement_speed := unit.movement_speed * (1.5 if is_on_path else 1.0)
+	if not _navgiation_agent.is_navigation_finished():
+		var next_path_position := _navgiation_agent.get_next_path_position()
+		var motion := next_path_position - global_position
+		rotation = lerp_angle(rotation, _look_vector.angle_to(motion), unit.turn_speed * delta)
+	var movement_speed := unit.movement_speed * (1.5 if is_on_path else 1.0)
+	if _is_knocking_back:
+		velocity = velocity.lerp(Vector2.ZERO, unit.drag * delta)
+		if velocity.length_squared() <= movement_speed: _is_knocking_back = false
+	elif not Input.is_key_pressed(KEY_S):
 		velocity = velocity.lerp(_get_forward_axis() * movement_speed, unit.acceleration * delta)
+		_navgiation_agent.velocity = velocity
 	move_and_slide()
-	_navgiation_agent.velocity = velocity
+
+func knockback(knockback_from: Vector2, strength: float, set_knockacking: bool) -> void:
+	if set_knockacking: _is_knocking_back = true
+	velocity += knockback_from.direction_to(global_position) * (strength / unit.mass) * 1024.0
 
 func connect_to_unit_instance(unit_instance: UnitInstance) -> void:
 	unit = unit_instance.unit
@@ -61,7 +68,8 @@ func _get_forward_axis() -> Vector2:
 
 # Called from signal emitted by [WeaponInstance]
 func _on_attack(weapon: Weapon, _weapon_instance: WeaponInstance, hit_box: HitBox) -> void:
-	velocity = -global_position.direction_to(hit_box.global_position) * pow(weapon.recoil, 2.0)
+	knockback(hit_box.global_position, weapon.recoil, true)
 
 func _on_navigation_velocity_computed(safe_velocity: Vector2) -> void:
+	if _is_knocking_back: return
 	velocity = safe_velocity
