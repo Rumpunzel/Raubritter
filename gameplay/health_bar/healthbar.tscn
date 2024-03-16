@@ -37,7 +37,6 @@ theme_override_constants/margin_bottom = 1
 
 [node name="Damage" type="ProgressBar" parent="PanelContainer/MarginContainer/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 1
 max_value = 25.0
 show_percentage = false
@@ -45,6 +44,7 @@ show_percentage = false
 [node name="Health" type="ProgressBar" parent="PanelContainer/MarginContainer/MarginContainer"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
+size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxEmpty_usog3")
 value = 50.0
 show_percentage = false
