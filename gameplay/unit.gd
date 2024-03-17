@@ -1,12 +1,16 @@
 class_name Unit
 extends Resource
 
+const HIT_POINT_SEGMENT_SIZE := 25.0
+
 const UNIT_INSTANCE: PackedScene = preload("res://gameplay/unit_instance.tscn")
 
 @export_placeholder("Name") var name: String
 
 @export var hit_points := 100.0
 @export var health_bar_girth := 8.0
+
+@export var bounty: Bounty
 
 @export var mass := 64.0
 @export var movement_speed := 64.0
@@ -15,6 +19,9 @@ const UNIT_INSTANCE: PackedScene = preload("res://gameplay/unit_instance.tscn")
 @export var turn_speed := 8.0
 
 @export var _scene: PackedScene
+
+func get_hit_point_segments() -> int:
+	return ceili(hit_points / HIT_POINT_SEGMENT_SIZE)
 
 @warning_ignore("unused_parameter")
 func can_spawn_unit(gold: int) -> bool:
