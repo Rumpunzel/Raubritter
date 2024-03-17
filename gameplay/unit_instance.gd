@@ -2,13 +2,19 @@ class_name UnitInstance
 extends Node
 
 signal hit_points_changed(hit_points: float)
+signal hit_point_segment_changed(hit_point_segment: int)
 
-@export var unit: Unit
-@export var destination: Node2D
+@export var hit_point_segment_size := 25.0
+
+var unit: Unit
+var destination: Node2D
 
 var hit_points: float :
 	set(new_hit_points):
+		var old_hit_points := hit_points
 		hit_points = new_hit_points
+		if get_hit_point_segment() != get_hit_point_segment(old_hit_points):
+			hit_point_segment_changed.emit(get_hit_point_segment())
 		hit_points_changed.emit(hit_points)
 
 var _character_controller: CharacterController
@@ -35,6 +41,9 @@ func damage(damage_taken: float, source: UnitInstance, weapon: Weapon) -> void:
 	hit_points -= damage_taken
 	if hit_points <= 0.0: _die()
 	_character_controller.knockback(source.get_position(), weapon.recoil, false)
+
+func get_hit_point_segment(hit_points_to_check := hit_points) -> int:
+	return floori(hit_points_to_check / hit_point_segment_size)
 
 func spawn(spawn_point: Node2D) -> void:
 	spawn_at(spawn_point.global_position)

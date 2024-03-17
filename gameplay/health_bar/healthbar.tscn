@@ -7,8 +7,8 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_usog3"]
 
 [node name="Healthbar" type="CenterContainer" node_paths=PackedStringArray("_damage_bar", "_health_bar", "_segments_container", "_fade_out_timer")]
-offset_right = 94.0
-offset_bottom = 14.0
+offset_right = 288.0
+offset_bottom = 74.0
 script = ExtResource("1_krk3h")
 _damage_bar = NodePath("PanelContainer/MarginContainer/MarginContainer/Damage")
 _health_bar = NodePath("PanelContainer/MarginContainer/MarginContainer/Health")
