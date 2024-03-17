@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	if _is_knocking_back:
 		velocity = velocity.lerp(Vector2.ZERO, unit.drag * delta)
 		if velocity.length_squared() <= movement_speed: _is_knocking_back = false
-	elif not Input.is_key_pressed(KEY_S):
+	elif destination and not Input.is_key_pressed(KEY_S):
 		velocity = velocity.lerp(_get_forward_axis() * movement_speed, unit.acceleration * delta)
 		_navgiation_agent.velocity = velocity
 	move_and_slide()
