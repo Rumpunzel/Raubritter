@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" path="res://gameplay/gui.gd" id="1_0faec"]
 
-[node name="GUI" type="CanvasLayer"]
+[node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("_gold_amount")]
 layer = 10
 script = ExtResource("1_0faec")
+_gold_amount = NodePath("MarginContainer/PanelContainer/MarginContainer/Gold/Amount")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15

@@ -4,27 +4,26 @@ extends Node
 signal hit_points_changed(hit_points: float)
 signal hit_point_segment_changed(hit_point_segment: int)
 
-@export var hit_point_segment_size := 25.0
+signal coin_dropped(dropped_from: Vector2)
 
 var unit: Unit
 var destination: Node2D
 
-var hit_points: float :
+var _hit_points: float :
 	set(new_hit_points):
-		var old_hit_points := hit_points
-		hit_points = new_hit_points
-		if get_hit_point_segment() != get_hit_point_segment(old_hit_points):
-			hit_point_segment_changed.emit(get_hit_point_segment())
-		hit_points_changed.emit(hit_points)
+		_hit_points = new_hit_points
+		hit_points_changed.emit(_hit_points)
+		if _hit_points <= 0.0: _die()
 
 var _character_controller: CharacterController
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	hit_points = unit.hit_points
+	_hit_points = unit.hit_points
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if not _character_controller: return
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		_character_controller.destination = get_viewport().get_mouse_position()
 		return
@@ -38,12 +37,14 @@ func _process(_delta: float) -> void:
 	_character_controller.destination = destination.global_position
 
 func damage(damage_taken: float, source: UnitInstance, weapon: Weapon) -> void:
-	hit_points -= damage_taken
-	if hit_points <= 0.0: _die()
+	var old_hit_points := _hit_points
+	_hit_points -= damage_taken
+	if get_hit_point_segment() != get_hit_point_segment(old_hit_points):
+		_on_hit_point_segment_changed()
 	_character_controller.knockback(source.get_position(), weapon.recoil, false)
 
-func get_hit_point_segment(hit_points_to_check := hit_points) -> int:
-	return floori(hit_points_to_check / hit_point_segment_size)
+func get_hit_point_segment(hit_points_to_check := _hit_points) -> int:
+	return floori(hit_points_to_check / Unit.HIT_POINT_SEGMENT_SIZE)
 
 func spawn(spawn_point: Node2D) -> void:
 	spawn_at(spawn_point.global_position)
@@ -64,8 +65,17 @@ func get_healthbar_position() -> Vector2:
 	return _character_controller.get_viewport_transform() * in_world_position
 
 func _die() -> void:
+	var position := get_position()
+	for _i: int in range(unit.bounty.coins_for_kill):
+		coin_dropped.emit(position)
 	if _character_controller: _character_controller.queue_free()
-	queue_free()
+	#queue_free()
+
+func _on_hit_point_segment_changed() -> void:
+	hit_point_segment_changed.emit(get_hit_point_segment())
+	var position := get_position()
+	for _i: int in range(unit.bounty.coins_for_segment):
+		coin_dropped.emit(position)
 
 # Called from signal emitted by [WeaponInstance]
 func _on_attacked(weapon: Weapon, _weapon_instance: WeaponInstance, hit_box: HitBox) -> void:

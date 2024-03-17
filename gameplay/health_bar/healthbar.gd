@@ -59,7 +59,7 @@ func update_max_hit_points(max_hit_points: float) -> void:
 		_segments_container.remove_child(child)
 		child.queue_free()
 	_add_health_bar_segment()
-	var segments_amount := floori(max_hit_points / unit_instance.hit_point_segment_size) - 1
+	var segments_amount := floori(max_hit_points / Unit.HIT_POINT_SEGMENT_SIZE) - 1
 	for _i: int in range(segments_amount):
 		_segments_container.add_child(_health_bar_segment_separator.instantiate())
 		_add_health_bar_segment()

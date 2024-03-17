@@ -1,13 +1,13 @@
 class_name UnitSpawner
 extends Node
 
+signal unit_spawned(unit_instance: UnitInstance)
+
 @export var _unit: Unit
 @export var _spawn_parent: Node = self
-
-@export var _hud: HUD
 @export var _spawn_points: SpawnPoints
 
-func spawn_unit_at(spawn_position: Vector2, unit: Unit = _unit) -> UnitInstance:
+func spawn_unit_at(spawn_position: Vector2, unit := _unit) -> UnitInstance:
 	var unit_instance := _create_unit(unit)
 	unit_instance.spawn_at(spawn_position)
 	return unit_instance
@@ -31,5 +31,5 @@ func _create_unit(unit: Unit) -> UnitInstance:
 	var unit_instance := unit.create_unit_instance()
 	var parent: Node = _spawn_parent if _spawn_parent else self
 	parent.add_child(unit_instance)
-	_hud.create_healthbar(unit_instance)
+	unit_spawned.emit(unit_instance)
 	return unit_instance

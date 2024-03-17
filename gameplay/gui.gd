@@ -1,9 +1,11 @@
 class_name GUI
 extends CanvasLayer
 
+@export var _gold_amount: Label
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
-func update_gold(gold: int) -> void:
-	$MarginContainer/PanelContainer/MarginContainer/Gold/Amount.text = "%d" % gold
+func _on_gold_changed(gold: int) -> void:
+	_gold_amount.text = "%d" % gold
