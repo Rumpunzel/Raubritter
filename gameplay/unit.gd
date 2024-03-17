@@ -4,7 +4,7 @@ extends Resource
 const UNIT_INSTANCE: PackedScene = preload("res://gameplay/unit_instance.tscn")
 
 @export_placeholder("Name") var name: String
-@export var color: Color
+
 @export var hit_points := 100.0
 @export var health_bar_girth := 8.0
 

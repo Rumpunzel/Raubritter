@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="Unit" load_steps=3 format=3 uid="uid://du6cbrycvnkqb"]
+[gd_resource type="Resource" script_class="Outlaw" load_steps=4 format=3 uid="uid://du6cbrycvnkqb"]
 
-[ext_resource type="Script" path="res://gameplay/unit.gd" id="1_rehtj"]
+[ext_resource type="Script" path="res://gameplay/outlaw.gd" id="1_r0vh6"]
 [ext_resource type="PackedScene" uid="uid://cevha86xlk3n2" path="res://gameplay/units/unit.tscn" id="1_y3mv8"]
+[ext_resource type="Resource" uid="uid://bj2t37qx4362d" path="res://gameplay/units/unit_classes/warrior.tres" id="2_ah8gf"]
 
 [resource]
-script = ExtResource("1_rehtj")
+script = ExtResource("1_r0vh6")
+unit_class = ExtResource("2_ah8gf")
+cost = 1
+upkeep = 1
 name = "Thug"
-color = Color(1, 0.635294, 0, 1)
 hit_points = 50.0
 health_bar_girth = 8.0
 mass = 75.0

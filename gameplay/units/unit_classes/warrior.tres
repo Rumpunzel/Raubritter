@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="UnitClass" load_steps=2 format=3 uid="uid://bj2t37qx4362d"]
+
+[ext_resource type="Script" path="res://gameplay/unit_class.gd" id="1_x6sdh"]
+
+[resource]
+script = ExtResource("1_x6sdh")
+name = "Warrior"
+color = Color(1, 0.596078, 0, 1)
