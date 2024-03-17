@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://te7v0r4n0ey7"]
+[gd_scene load_steps=31 format=3 uid="uid://te7v0r4n0ey7"]
 
 [ext_resource type="Texture2D" uid="uid://xhqq3drf3k1f" path="res://assets/cartography_pack/Textures/parchmentFoldedCrinkled.png" id="1_fstis"]
 [ext_resource type="Script" path="res://gameplay/hud.gd" id="2_ph4we"]
 [ext_resource type="PackedScene" uid="uid://dfc23gd6dpm77" path="res://gameplay/health_bar/healthbar.tscn" id="3_i4cfy"]
+[ext_resource type="PackedScene" uid="uid://b4cn15tjelk4q" path="res://gameplay/gui.tscn" id="4_fxh2i"]
 [ext_resource type="Script" path="res://level/player.gd" id="4_l4113"]
 [ext_resource type="Texture2D" uid="uid://c4570j7e4r2ku" path="res://assets/cartography_pack/Spritesheet/spritesheet_retina.png" id="5_dr5hk"]
 [ext_resource type="Script" path="res://level/path_area.gd" id="5_e4srb"]
@@ -45,13 +46,17 @@ texture = ExtResource("1_fstis")
 stretch_mode = 1
 
 [node name="HUD" type="CanvasLayer" parent="."]
-layer = 10
+layer = 5
 script = ExtResource("2_ph4we")
 _healthbar = ExtResource("3_i4cfy")
 
-[node name="Player" type="Node" parent="." node_paths=PackedStringArray("_thug_spawner")]
+[node name="GUI" parent="." instance=ExtResource("4_fxh2i")]
+
+[node name="Player" type="Node" parent="." node_paths=PackedStringArray("_thug_spawner", "_gui")]
 script = ExtResource("4_l4113")
+_unit = ExtResource("10_xsm5d")
 _thug_spawner = NodePath("../ThugSpawner")
+_gui = NodePath("../GUI")
 
 [node name="ThugSpawner" type="Node" parent="." node_paths=PackedStringArray("_hud", "_spawn_points")]
 script = ExtResource("7_5ce05")

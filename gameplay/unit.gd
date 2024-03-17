@@ -16,6 +16,11 @@ const UNIT_INSTANCE: PackedScene = preload("res://gameplay/unit_instance.tscn")
 
 @export var _scene: PackedScene
 
+@warning_ignore("unused_parameter")
+func can_spawn_unit(gold: int) -> bool:
+	assert(false, "Unit type not supported!")
+	return false
+
 func create_unit_instance() -> UnitInstance:
 	var unit_instance := UNIT_INSTANCE.instantiate() as UnitInstance
 	unit_instance.unit = self

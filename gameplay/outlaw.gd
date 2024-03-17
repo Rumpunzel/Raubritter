@@ -5,3 +5,6 @@ extends Unit
 
 @export var cost := 1
 @export var upkeep := 1
+
+func can_spawn_unit(gold: int) -> bool:
+	return cost <= gold
