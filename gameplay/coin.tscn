@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://ctn3gw7gcmo2o"]
+
+[ext_resource type="Texture2D" uid="uid://detgjb2xe2drs" path="res://assets/coins/Full Coins.png" id="1_tguyk"]
+[ext_resource type="Script" path="res://gameplay/coin.gd" id="1_tut0e"]
+
+[sub_resource type="Curve" id="Curve_c28v1"]
+max_value = 64.0
+_data = [Vector2(0, 32), 0.0, 0.0, 0, 0, Vector2(0.495775, 64), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_algnj"]
+
+[sub_resource type="Animation" id="Animation_soux1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_kd7yc"]
+resource_name = "spin"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hh7lc"]
+_data = {
+"RESET": SubResource("Animation_soux1"),
+"spin": SubResource("Animation_kd7yc")
+}
+
+[node name="Coin" type="Area2D" node_paths=PackedStringArray("_collision_shape")]
+script = ExtResource("1_tut0e")
+_spawn_radius = SubResource("Curve_c28v1")
+_collision_shape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_algnj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tguyk")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_hh7lc")
+}
+autoplay = "spin"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
