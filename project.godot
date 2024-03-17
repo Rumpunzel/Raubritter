@@ -43,6 +43,7 @@ debug_spawn_thug={
 2d_physics/layer_5="HurtBoxes"
 2d_physics/layer_6="HitBoxes"
 2d_physics/layer_9="RoutePoints"
+2d_physics/layer_10="Coins"
 avoidance/layer_1="Units"
 avoidance/layer_2="Carts"
 
