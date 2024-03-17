@@ -36,7 +36,9 @@ debug_spawn_thug={
 [layer_names]
 
 2d_physics/layer_1="Units"
+2d_navigation/layer_1="Path"
 2d_physics/layer_2="Carts"
+2d_navigation/layer_2="Wilderness"
 2d_physics/layer_3="Scenery"
 2d_physics/layer_5="HurtBoxes"
 2d_physics/layer_6="HitBoxes"
@@ -46,4 +48,4 @@ avoidance/layer_2="Carts"
 
 [navigation]
 
-2d/default_edge_connection_margin=32.0
+2d/default_edge_connection_margin=8.0
