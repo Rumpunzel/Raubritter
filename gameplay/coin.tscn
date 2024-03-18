@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctn3gw7gcmo2o"]
+[gd_scene load_steps=9 format=3 uid="uid://ctn3gw7gcmo2o"]
 
 [ext_resource type="Texture2D" uid="uid://detgjb2xe2drs" path="res://assets/coins/Full Coins.png" id="1_tguyk"]
 [ext_resource type="Script" path="res://gameplay/coin.gd" id="1_tut0e"]
+[ext_resource type="PackedScene" uid="uid://2ed4t7mr2prm" path="res://gameplay/default_light.tscn" id="2_it2mm"]
 
 [sub_resource type="Curve" id="Curve_c28v1"]
 max_value = 64.0
@@ -59,6 +60,8 @@ _collision_shape = NodePath("CollisionShape2D")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_algnj")
 debug_color = Color(0.545098, 0.564706, 0, 0.419608)
+
+[node name="DefaultLight" parent="." instance=ExtResource("2_it2mm")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_tguyk")

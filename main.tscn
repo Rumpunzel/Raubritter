@@ -50,18 +50,6 @@ wait_time = 3.0
 script = ExtResource("2_7bee0")
 _color_gradient = ExtResource("3_v6w6e")
 
-[node name="Background" type="CanvasLayer" parent="."]
-layer = -10
-
-[node name="Parchment" type="TextureRect" parent="Background"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_fstis")
-stretch_mode = 1
-
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 5
 script = ExtResource("2_ph4we")
@@ -74,22 +62,16 @@ script = ExtResource("4_l4113")
 _unit = ExtResource("10_xsm5d")
 _thug_spawner = NodePath("../ThugSpawner")
 
-[node name="ThugSpawner" type="Node" parent="." node_paths=PackedStringArray("_spawn_points")]
-script = ExtResource("7_5ce05")
-_unit = ExtResource("10_xsm5d")
-_spawn_points = NodePath("../Level/PathExits")
-
-[node name="CartSpawner" type="Node" parent="." node_paths=PackedStringArray("_spawn_points")]
-script = ExtResource("7_5ce05")
-_unit = ExtResource("11_8bk4e")
-_spawn_points = NodePath("../Level/PathExits")
-
-[node name="CoinSpawner" type="Node" parent="."]
-script = ExtResource("7_u6f7f")
-_scene = ExtResource("8_jyjog")
+[node name="Parchment" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_fstis")
+stretch_mode = 1
 
 [node name="Level" type="Node2D" parent="."]
-z_index = -5
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Level"]
@@ -159,6 +141,20 @@ metadata/_edit_lock_ = true
 position = Vector2(928, 544)
 gizmo_extents = 256.0
 metadata/_edit_lock_ = true
+
+[node name="ThugSpawner" type="Node2D" parent="." node_paths=PackedStringArray("_spawn_points")]
+script = ExtResource("7_5ce05")
+_unit = ExtResource("10_xsm5d")
+_spawn_points = NodePath("../Level/PathExits")
+
+[node name="CartSpawner" type="Node2D" parent="." node_paths=PackedStringArray("_spawn_points")]
+script = ExtResource("7_5ce05")
+_unit = ExtResource("11_8bk4e")
+_spawn_points = NodePath("../Level/PathExits")
+
+[node name="CoinSpawner" type="Node2D" parent="."]
+script = ExtResource("7_u6f7f")
+_scene = ExtResource("8_jyjog")
 
 [node name="SpritesheetRetina" type="Sprite2D" parent="."]
 position = Vector2(-1942, -45)
@@ -235,10 +231,10 @@ texture = ExtResource("39_oh10u")
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="time_of_day_changed" from="Sun" to="GUI" method="_on_time_of_day_changed"]
 [connection signal="gold_changed" from="Player" to="GUI" method="_on_gold_changed"]
+[connection signal="body_entered" from="Level/PathArea" to="Level/PathArea" method="_on_body_entered"]
+[connection signal="body_exited" from="Level/PathArea" to="Level/PathArea" method="_on_body_exited"]
 [connection signal="unit_spawned" from="ThugSpawner" to="HUD" method="_on_unit_spawned"]
 [connection signal="unit_spawned" from="ThugSpawner" to="CoinSpawner" method="_on_unit_spawned"]
 [connection signal="unit_spawned" from="CartSpawner" to="HUD" method="_on_unit_spawned"]
 [connection signal="unit_spawned" from="CartSpawner" to="CoinSpawner" method="_on_unit_spawned"]
 [connection signal="node_spawned" from="CoinSpawner" to="Player" method="_on_coin_spawned"]
-[connection signal="body_entered" from="Level/PathArea" to="Level/PathArea" method="_on_body_entered"]
-[connection signal="body_exited" from="Level/PathArea" to="Level/PathArea" method="_on_body_exited"]
