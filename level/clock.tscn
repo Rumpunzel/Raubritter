@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://7mrurbf668mf"]
+
+[ext_resource type="Script" path="res://level/clock.gd" id="1_0opll"]
+
+[node name="Clock" type="HBoxContainer" node_paths=PackedStringArray("_hours", "_minutes")]
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 67.0
+offset_bottom = 27.0
+script = ExtResource("1_0opll")
+_hours = NodePath("Hours")
+_minutes = NodePath("Minutes")
+
+[node name="Hours" type="Label" parent="."]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+text = "6"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Colon" type="Label" parent="."]
+layout_mode = 2
+text = ":"
+vertical_alignment = 1
+
+[node name="Minutes" type="Label" parent="."]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+text = "00"
+vertical_alignment = 1

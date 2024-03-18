@@ -1,3 +1,4 @@
+class_name Player
 extends Node
 
 signal gold_changed(gold: int)
@@ -14,8 +15,7 @@ signal gold_changed(gold: int)
 func _ready() -> void:
 	gold_changed.emit(_gold)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func read_build_inputs() -> void:
 	if not Input.is_action_just_pressed("debug_spawn_thug"): return
 	if _unit.can_spawn_unit(_gold):
 		_gold -= _unit.cost

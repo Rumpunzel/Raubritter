@@ -15,7 +15,12 @@ script = ExtResource("1_u8bdp")
 texture = ExtResource("2_obh75")
 
 [node name="Despawner" type="Area2D" parent="."]
+position = Vector2(0, 64)
+collision_layer = 256
+collision_mask = 2
 script = ExtResource("1_uaonb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Despawner"]
 shape = SubResource("CircleShape2D_wmwkx")
+
+[connection signal="body_entered" from="Despawner" to="Despawner" method="_on_body_entered"]

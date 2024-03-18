@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4cn15tjelk4q"]
+[gd_scene load_steps=4 format=3 uid="uid://b4cn15tjelk4q"]
 
 [ext_resource type="Script" path="res://gameplay/gui.gd" id="1_0faec"]
+[ext_resource type="Texture2D" uid="uid://bihjcdm7cgqe4" path="res://assets/coins/coin_01.png" id="2_kd6bc"]
+[ext_resource type="PackedScene" uid="uid://7mrurbf668mf" path="res://level/clock.tscn" id="3_0ymav"]
 
-[node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("_gold_amount")]
+[node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("_clock", "_gold_amount")]
 layer = 10
 script = ExtResource("1_0faec")
+_clock = NodePath("MarginContainer/PanelContainer2/MarginContainer/Clock")
 _gold_amount = NodePath("MarginContainer/PanelContainer/MarginContainer/Gold/Amount")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -18,6 +21,21 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 4
+
+[node name="Clock" parent="MarginContainer/PanelContainer2/MarginContainer" instance=ExtResource("3_0ymav")]
+layout_mode = 2
+
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
@@ -25,18 +43,19 @@ size_flags_vertical = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 4
 
 [node name="Gold" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/Gold"]
+[node name="Icon" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/Gold"]
 layout_mode = 2
-text = "Gold:"
-horizontal_alignment = 1
+texture = ExtResource("2_kd6bc")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Amount" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/Gold"]
 custom_minimum_size = Vector2(32, 0)

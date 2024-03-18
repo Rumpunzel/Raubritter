@@ -6,16 +6,16 @@
 
 [sub_resource type="Resource" id="Resource_bkoqh"]
 script = ExtResource("2_uk7k2")
-coins_for_segment = 1
 coins_for_kill = 10
+coins_for_segment = 1
 
 [resource]
 script = ExtResource("2_0sdej")
-bounty = SubResource("Resource_bkoqh")
 shipping_cost = 2.0
 name = "Cart"
 hit_points = 100.0
 health_bar_girth = 12.0
+bounty = SubResource("Resource_bkoqh")
 mass = 2048.0
 movement_speed = 32.0
 acceleration = 4.0
