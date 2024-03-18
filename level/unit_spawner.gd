@@ -1,5 +1,5 @@
 class_name UnitSpawner
-extends Node
+extends Node2D
 
 signal unit_spawned(unit_instance: UnitInstance)
 

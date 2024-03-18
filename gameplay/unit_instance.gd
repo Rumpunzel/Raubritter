@@ -1,9 +1,9 @@
 class_name UnitInstance
 extends Node
 
+signal died
 signal hit_points_changed(hit_points: float)
 signal hit_point_segment_changed(hit_point_segment: int)
-
 signal coin_dropped(dropped_from: Vector2)
 
 var unit: Unit
@@ -65,6 +65,7 @@ func get_healthbar_position() -> Vector2:
 	return _character_controller.get_viewport_transform() * in_world_position
 
 func _die() -> void:
+	died.emit()
 	var position := get_position()
 	for _i: int in range(unit.bounty.coins_for_kill):
 		coin_dropped.emit(position)

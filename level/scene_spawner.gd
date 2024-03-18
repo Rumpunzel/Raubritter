@@ -1,5 +1,5 @@
 class_name SceneSpawner
-extends Node
+extends Node2D
 
 signal node_spawned(node: Node2D)
 

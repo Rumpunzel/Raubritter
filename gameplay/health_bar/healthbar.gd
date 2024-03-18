@@ -26,6 +26,7 @@ var unit_instance: UnitInstance :
 		custom_minimum_size.y = unit.health_bar_girth
 		unit_instance.hit_points_changed.connect(update_hit_points)
 		unit_instance.hit_point_segment_changed.connect(update_hit_point_segments)
+		unit_instance.died.connect(queue_free)
 		unit_instance.tree_exiting.connect(queue_free)
 		update_position()
 
