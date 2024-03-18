@@ -62,6 +62,7 @@ shape = SubResource("CircleShape2D_algnj")
 debug_color = Color(0.545098, 0.564706, 0, 0.419608)
 
 [node name="DefaultLight" parent="." instance=ExtResource("2_it2mm")]
+texture_scale = 0.75
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_tguyk")
