@@ -10,6 +10,7 @@ signal collected
 @export var _collect_duration := 0.5
 
 @export var _collision_shape: CollisionShape2D
+@export var _animation_player: AnimationPlayer
 
 func _ready() -> void:
 	var random_position_on_radius := Vector2(_spawn_radius.sample(randf()), 0.0).rotated(randf() * TAU)
@@ -25,6 +26,8 @@ func _collect() -> void:
 
 func _on_mouse_entered() -> void:
 	_collision_shape.disabled = true
-	var tween := create_tween()
-	tween.tween_property(self, "scale", Vector2.ZERO, _collect_duration).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
-	tween.tween_callback(_collect)
+	var scale_tween := create_tween()
+	var animation_tween := create_tween()
+	scale_tween.tween_property(self, "scale", Vector2.ZERO, _collect_duration).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	scale_tween.tween_callback(_collect)
+	animation_tween.tween_property(_animation_player, "speed_scale", 4.0, _collect_duration)

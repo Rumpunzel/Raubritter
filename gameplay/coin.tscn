@@ -50,12 +50,13 @@ _data = {
 "spin": SubResource("Animation_kd7yc")
 }
 
-[node name="Coin" type="Area2D" node_paths=PackedStringArray("_collision_shape")]
-collision_layer = 513
+[node name="Coin" type="Area2D" node_paths=PackedStringArray("_collision_shape", "_animation_player")]
+collision_layer = 512
 collision_mask = 0
 script = ExtResource("1_tut0e")
 _spawn_radius = SubResource("Curve_c28v1")
 _collision_shape = NodePath("CollisionShape2D")
+_animation_player = NodePath("Sprite2D/AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_algnj")

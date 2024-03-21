@@ -7,7 +7,7 @@
 [node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("_clock", "_gold_amount")]
 layer = 10
 script = ExtResource("1_0faec")
-_clock = NodePath("MarginContainer/PanelContainer2/MarginContainer/Clock")
+_clock = NodePath("MarginContainer/Clock")
 _gold_amount = NodePath("MarginContainer/PanelContainer/MarginContainer/Gold/Amount")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -21,20 +21,9 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer"]
+[node name="Clock" parent="MarginContainer" instance=ExtResource("3_0ymav")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer2"]
-layout_mode = 2
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 4
-
-[node name="Clock" parent="MarginContainer/PanelContainer2/MarginContainer" instance=ExtResource("3_0ymav")]
-layout_mode = 2
+_start_hidden = true
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 layout_mode = 2

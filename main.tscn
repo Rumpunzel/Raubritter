@@ -228,6 +228,7 @@ texture = ExtResource("38_crc4q")
 position = Vector2(64, 9)
 texture = ExtResource("39_oh10u")
 
+[connection signal="phase_changed" from="." to="GUI" method="_on_phase_changed"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="time_of_day_changed" from="Sun" to="GUI" method="_on_time_of_day_changed"]
 [connection signal="gold_changed" from="Player" to="GUI" method="_on_gold_changed"]
