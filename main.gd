@@ -54,11 +54,12 @@ func _process(delta: float) -> void:
 			return
 
 func _enter_state(state: Phases = _state) -> void:
+	if state == Phases.BUILD:
+		_sun.time_of_day = float(Sun.DayTime.DAWN)
 	if state == Phases.FIGHT:
 		_elapsed_time = 0.0
 		_on_spawn_timer_timeout()
 		_spawn_timer.start()
-		_sun.time_of_day = float(Sun.DayTime.DAWN)
 
 func _leave_state(state: Phases = _state) -> void:
 	if state == Phases.FIGHT:

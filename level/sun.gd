@@ -13,7 +13,7 @@ enum DayTime {
 @export var _color_gradient: Gradient
 @export var _lerp_speed := 1.0
 
-var time_of_day := float(DayTime.NIGHT) :
+var time_of_day := float(DayTime.DAWN) :
 	set(new_time_of_day):
 		time_of_day = new_time_of_day
 		while time_of_day >= 24.0: time_of_day -= 24.0

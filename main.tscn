@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://te7v0r4n0ey7"]
+[gd_scene load_steps=39 format=3 uid="uid://te7v0r4n0ey7"]
 
 [ext_resource type="Texture2D" uid="uid://xhqq3drf3k1f" path="res://assets/cartography_pack/Textures/parchmentFoldedCrinkled.png" id="1_fstis"]
 [ext_resource type="Script" path="res://main.gd" id="1_nmprq"]
@@ -17,6 +17,8 @@
 [ext_resource type="Script" path="res://level/scene_spawner.gd" id="7_u6f7f"]
 [ext_resource type="PackedScene" uid="uid://ctn3gw7gcmo2o" path="res://gameplay/coin.tscn" id="8_jyjog"]
 [ext_resource type="Texture2D" uid="uid://bid2hhgtnqbbx" path="res://assets/scribble_dungeons/PNG/Double (128px)/Characters/red_character.png" id="8_vg20g"]
+[ext_resource type="PackedScene" uid="uid://2ed4t7mr2prm" path="res://gameplay/default_light.tscn" id="9_ivcsu"]
+[ext_resource type="Script" path="res://level/cursor.gd" id="9_kh6jr"]
 [ext_resource type="Resource" uid="uid://du6cbrycvnkqb" path="res://gameplay/units/thug.tres" id="10_xsm5d"]
 [ext_resource type="Resource" uid="uid://ccbs3vjek7dhw" path="res://gameplay/units/cart.tres" id="11_8bk4e"]
 [ext_resource type="Script" path="res://level/spawn_points.gd" id="11_fylct"]
@@ -35,6 +37,9 @@
 [ext_resource type="Texture2D" uid="uid://sy3dqlltx3cw" path="res://assets/scribble_dungeons/PNG/Double (128px)/barrels_stacked.png" id="37_fr3ul"]
 [ext_resource type="Texture2D" uid="uid://b6b8j13jviv3g" path="res://assets/scribble_dungeons/PNG/Double (128px)/arrow_head.png" id="38_crc4q"]
 [ext_resource type="Texture2D" uid="uid://bg3ihehdeflsc" path="res://assets/scribble_dungeons/PNG/Double (128px)/puddle.png" id="39_oh10u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j8cs8"]
+radius = 32.0
 
 [node name="Main" type="Node" node_paths=PackedStringArray("_spawn_timer", "_sun", "_player", "_cart_spawner")]
 script = ExtResource("1_nmprq")
@@ -61,6 +66,20 @@ _healthbar = ExtResource("3_i4cfy")
 script = ExtResource("4_l4113")
 _unit = ExtResource("10_xsm5d")
 _thug_spawner = NodePath("../ThugSpawner")
+
+[node name="Cursor" type="Area2D" parent="Player"]
+collision_layer = 524288
+collision_mask = 512
+input_pickable = false
+script = ExtResource("9_kh6jr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Cursor"]
+shape = SubResource("CircleShape2D_j8cs8")
+debug_color = Color(0.266667, 0.635294, 0, 0.419608)
+
+[node name="DefaultLight" parent="Player/Cursor" instance=ExtResource("9_ivcsu")]
+energy = 0.1
+texture_scale = 4.0
 
 [node name="Parchment" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -232,6 +251,7 @@ texture = ExtResource("39_oh10u")
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="time_of_day_changed" from="Sun" to="GUI" method="_on_time_of_day_changed"]
 [connection signal="gold_changed" from="Player" to="GUI" method="_on_gold_changed"]
+[connection signal="area_entered" from="Player/Cursor" to="Player/Cursor" method="_on_area_entered"]
 [connection signal="body_entered" from="Level/PathArea" to="Level/PathArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Level/PathArea" to="Level/PathArea" method="_on_body_exited"]
 [connection signal="unit_spawned" from="ThugSpawner" to="HUD" method="_on_unit_spawned"]
